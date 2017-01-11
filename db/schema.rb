@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110233527) do
+ActiveRecord::Schema.define(version: 20170111215204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ceremonies", force: :cascade do |t|
+    t.integer  "location_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.integer  "max_guests"
+    t.string   "phone"
+    t.string   "website"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "table_cap"
+    t.integer  "table_count"
+    t.integer  "chair_count"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "receptions", force: :cascade do |t|
+    t.integer  "location_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "weddings", force: :cascade do |t|
     t.integer  "ceremony_id"
