@@ -3,20 +3,14 @@ require 'rails_helper'
 RSpec.describe Wedding, type: :model do
   describe 'Wedding Validations' do
     it 'cannot have the same name as another wedding' do
-      ceremony = create(:ceremony)
-      reception = create(:reception)
       create(
         :wedding,
         name: 'this_wedding',
-        ceremony_id: ceremony.id,
-        reception_id: reception.id
       )
       expect(
         build(
           :wedding,
           name: 'this_wedding',
-          reception_id: 2,
-          ceremony_id: 2,
         )
       ).to_not be_valid
     end
@@ -34,13 +28,12 @@ RSpec.describe Wedding, type: :model do
     end
 
     it 'is valid with a name, reception_id, and ceremony_id' do
-      ceremony = create(:ceremony)
-      reception = create(:reception)
       expect(
         build(
           :wedding,
-          ceremony_id: ceremony.id,
-          reception_id: reception.id,
+          name: 'test wedding',
+          ceremony_id: create(:ceremony).id,
+          reception_id: create(:reception).id,
         )
       ).to be_valid
     end

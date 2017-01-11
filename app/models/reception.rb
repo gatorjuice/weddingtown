@@ -7,4 +7,5 @@ class Reception < ApplicationRecord
   validate :start_time_cannot_be_later_than_end_time
 
   has_one :wedding
+  belongs_to :location
 end

@@ -7,7 +7,6 @@ server:
 	$(BE) rails server
 
 test:
-	$(BE) db:migrate RAILS_ENV=test
 	$(BE) rspec
 
 migrate:
